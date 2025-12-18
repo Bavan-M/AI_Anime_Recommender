@@ -1,5 +1,5 @@
 # Base Image - Our prepared construction land
-FROM python:3.12-slim-buster
+FROM python:3.10-slim
 
 # House Rules - How Python should behave
 ENV PYTHONDONTWRITEBYTECODE=1 \
