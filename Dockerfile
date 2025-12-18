@@ -1,27 +1,27 @@
-# Base Image - Our prepared construction land
+## Parent image
 FROM python:3.10-slim
 
-# House Rules - How Python should behave
+## Essential environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
-# Designate the workshop room
+## Work directory inside the docker container
 WORKDIR /app
 
-# Get basic construction tools from hardware store
+## Installing system dependancies
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Bring in all building materials
+## Copying ur all contents from local to app
 COPY . .
 
-# Install custom furniture (Python packages)
+## Run setup.py
 RUN pip install --no-cache-dir -e .
 
-# Install a door at port 8501
+# Used PORTS
 EXPOSE 8501
 
-# What happens when someone visits
-CMD ["streamlit", "run", "app/app.py", "--server.port=8501", "--server.address=0.0.0.0", "--server.headless=true"]
+# Run the app 
+CMD ["streamlit", "run", "app/app.py", "--server.port=8501", "--server.address=0.0.0.0","--server.headless=true"]
